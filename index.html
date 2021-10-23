@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>This is a Home Page</title>
-</head>
-<body>
-    <p>
-        This is a text.
-    </p>
-</body>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>This is a Home Page</title>
+    </head>
+    <body>
+        <p>
+            This is a text.
+        </p>
+        <div id = "myvis"></div>
+    </body>
+    <script>
+        mySpec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "data": {
+        "values": [
+            {"A": 20, "B": 21, "C": 2},
+            {"A": 30, "B": 20, "C": 4},
+            {"A": 25, "B": 15, "C": 6},
+            {"A": 5, "B": 30, "C": 8}
+        ]
+    },
+    "mark": "circle",
+    "encoding": {
+        "x": { "field": "A", "type": "quantitative"},
+        "y": { "field": "B", "type": "quantitative"},
+        "size": { "field": "C", "type": "quantitative"}
+    }
+}; 
+        vegaEmbed('#myvis', {mySpec})
+    </script>
 </html>
