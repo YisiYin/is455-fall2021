@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+  "url": "https://uiuc-ischool-dataviz.github.io/is445_AOUAOG_fall2021/week02/data/building_inventory.csv"
+  },
+  
+  "hconcat":[
+    {
+      "transform": [
+        {"filter":{"param":"selection"}}
+      ],
+      "mark":"bar",
+      "encoding": {
+        "x": {"field": "Year Constructed", 
+        "type": "quantitative",
+        "bin":{"step": 200}
+        },
+        "y": {"aggregate":"mean","field": "Square Footage","type":"quantitative"}
+      }
+    },
+
+    {
+      "mark":"point",
+      "params":[
+        {
+          "name": "selection",
+          "select": {"type":"interval"}
+        }
+      ],
+      "encoding": {
+        "x":{
+          "field":"Rep Dist",
+          "type": "quantitative"
+        },
+        "y":{
+          "field":"Congress Dist",
+          "type": "quantitative"
+        },
+        "color":{
+          "value":"grey",
+          "condition":{
+            "param": "selection","value":"steelblue"
+          }
+        } 
+      }
+
+    }
+  ]
+}
